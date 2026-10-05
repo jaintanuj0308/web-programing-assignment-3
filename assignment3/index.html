@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Alexandria Digital Codex - Premium dual-frame literary information architecture and interactive library portal.">
+  <title>ALEXANDRIA // Book Information Architecture</title>
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/master.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Master Header Navigation -->
+    <header class="master-header">
+      <div class="brand-section">
+        <div class="brand-icon">𝔄</div>
+        <div class="brand-titles">
+          <h1 class="brand-name">ALEXANDRIA</h1>
+          <span class="brand-badge">Dual-Frame Codex v2.4 • Literary Archive</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Live Selected Status -->
+        <div class="pill-stat" id="statusBar">
+          <span class="indicator"></span>
+          <span id="currentBookStat">Dune (Frank Herbert)</span>
+        </div>
+
+        <!-- Audio FX Toggle -->
+        <button class="action-btn" id="soundToggleBtn" title="Toggle realistic paper & UI sounds">
+          <span>🎧</span>
+          <span id="soundStatusText">SFX: ON</span>
+        </button>
+
+        <!-- Theme Selector -->
+        <select class="theme-dropdown" id="themeSelector" title="Switch Theme">
+          <option value="dark">🌙 Dark Obsidian</option>
+          <option value="parchment">📜 Antique Parchment</option>
+          <option value="cyber">⚡ Cyber Neon</option>
+        </select>
+
+        <!-- Classic HTML Frameset Mode link -->
+        <a href="index_frameset.html" class="action-btn" title="View classic HTML <frameset> structure">
+          <span>🗂️</span>
+          <span>Frameset View</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Dual Frame Viewport -->
+    <main class="frames-container">
+      <!-- Left Frame: Book List -->
+      <section class="frame-left-wrapper" id="frameLeftWrapper">
+        <iframe 
+          src="frame_list.html" 
+          name="book_list_frame" 
+          id="leftBookListFrame"
+          class="book-iframe"
+          title="Book Selection Index Frame">
+        </iframe>
+      </section>
+
+      <!-- Draggable Splitter Divider -->
+      <div class="frame-splitter" id="frameSplitter" title="Click & Drag to resize frames"></div>
+
+      <!-- Right Frame: Book Detailed Information -->
+      <section class="frame-right-wrapper" id="frameRightWrapper">
+        <div class="iframe-overlay-loader" id="iframeLoader">
+          <div class="spinner"></div>
+          <span style="font-size: 0.85rem; color: var(--accent-gold); letter-spacing: 0.05em;">Retrieving Codex Archive...</span>
+        </div>
+        <iframe 
+          src="books/dune.html" 
+          name="book_details_frame" 
+          id="rightBookFrame"
+          class="book-iframe"
+          title="Book Detailed Information Frame">
+        </iframe>
+      </section>
+    </main>
+
+    <!-- Bottom Status & Frame Architecture Bar -->
+    <footer class="master-footer-bar">
+      <div class="footer-tags">
+        <div class="footer-tag-item">
+          <span>Architecture:</span>
+          <code>Dual-Frame Isolation</code>
+        </div>
+        <div class="footer-tag-item">
+          <span>Left Frame:</span>
+          <code>name="book_list_frame"</code>
+        </div>
+        <div class="footer-tag-item">
+          <span>Right Target:</span>
+          <code>target="book_details_frame"</code>
+        </div>
+      </div>
+      <div>
+        <span>Tip: Drag the vertical divider bar to adjust frame proportions</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/audio.js"></script>
+  <script src="js/master.js"></script>
+</body>
+</html>

@@ -1,0 +1,615 @@
+/* ==========================================================================
+   RIGHT FRAME: BOOK INFORMATION DETAILS STYLING
+   3D Book Tilt, Glassmorphic Cards, Excerpt Reader, Review Breakdowns
+   ========================================================================== */
+
+body.details-body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Ambient glow accent that dynamically matches book mood */
+.ambient-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(140px);
+  opacity: 0.15;
+  z-index: 0;
+}
+
+/* Main Container */
+.book-details-viewport {
+  position: relative;
+  z-index: 1;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem 4rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Hero Section: 3D Book Cover + Primary Info */
+.book-hero-section {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+}
+
+/* 3D Interactive Book Showcase */
+.book-3d-stage {
+  perspective: 1200px;
+  flex-shrink: 0;
+  cursor: grab;
+}
+
+.book-3d-object {
+  width: 200px;
+  height: 295px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(-18deg) rotateX(6deg);
+  transition: transform 0.2s ease-out;
+  box-shadow: 25px 25px 40px rgba(0, 0, 0, 0.6), 
+              0 0 20px rgba(0, 0, 0, 0.4);
+  border-radius: 4px 10px 10px 4px;
+}
+
+.book-cover-front {
+  position: absolute;
+  inset: 0;
+  border-radius: 4px 10px 10px 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem 1.2rem;
+  color: #fff;
+  border-left: 5px solid rgba(255, 255, 255, 0.25);
+  box-shadow: inset 4px 0 10px rgba(0, 0, 0, 0.5),
+              inset 0 0 40px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+/* Metallic foil sheen on front cover */
+.book-cover-front::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: rotate(30deg);
+  pointer-events: none;
+}
+
+/* Book 3D Pages Thickness Illusion */
+.book-pages-side {
+  position: absolute;
+  top: 4px;
+  right: -24px;
+  width: 25px;
+  height: 287px;
+  background: repeating-linear-gradient(
+    90deg,
+    #d1cbbe,
+    #d1cbbe 2px,
+    #ece7de 2px,
+    #ece7de 4px
+  );
+  transform: rotateY(90deg);
+  transform-origin: left center;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+  border-radius: 0 4px 4px 0;
+}
+
+/* Book Cover Gradients */
+.cover-dune {
+  background: radial-gradient(circle at 80% 20%, #e59838 0%, #b45309 45%, #451a03 100%);
+}
+.cover-1984 {
+  background: radial-gradient(circle at 80% 20%, #f43f5e 0%, #991b1b 50%, #450a0a 100%);
+}
+.cover-gatsby {
+  background: radial-gradient(circle at 80% 20%, #10b981 0%, #047857 50%, #022c22 100%);
+}
+.cover-neuromancer {
+  background: radial-gradient(circle at 80% 20%, #38bdf8 0%, #1e40af 50%, #09090b 100%);
+}
+.cover-hobbit {
+  background: radial-gradient(circle at 80% 20%, #ca8a04 0%, #15803d 50%, #142805 100%);
+}
+.cover-pride {
+  background: radial-gradient(circle at 80% 20%, #f472b6 0%, #be185d 50%, #500724 100%);
+}
+.cover-mockingbird {
+  background: radial-gradient(circle at 80% 20%, #f59e0b 0%, #78350f 50%, #1e293b 100%);
+}
+.cover-quantum {
+  background: radial-gradient(circle at 80% 20%, #c084fc 0%, #6b21a8 50%, #0f172a 100%);
+}
+
+.cover-title {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+  line-height: 1.2;
+}
+.cover-author {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}
+.cover-emblem {
+  font-size: 2.8rem;
+  align-self: center;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+}
+.cover-footer {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+/* Bookmark Ribbon */
+.bookmark-ribbon {
+  position: absolute;
+  top: 0;
+  right: 28px;
+  width: 14px;
+  height: 90px;
+  background: #dc2626;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+  z-index: 5;
+}
+
+/* Hero Right Details Column */
+.hero-details-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.hero-tags-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge-pill {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  color: var(--text-muted);
+}
+.badge-pill.gold {
+  background: rgba(229, 185, 88, 0.12);
+  border-color: var(--border-glow);
+  color: var(--accent-gold);
+}
+.badge-pill.award {
+  background: rgba(168, 85, 247, 0.12);
+  border-color: rgba(168, 85, 247, 0.3);
+  color: var(--accent-purple);
+}
+
+.book-main-title {
+  font-family: var(--font-serif);
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--text-main);
+  line-height: 1.15;
+}
+
+.book-author-subtitle {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.book-author-subtitle strong {
+  color: var(--text-gold);
+  font-weight: 600;
+}
+
+/* Rating Summary Card */
+.rating-summary-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  width: fit-content;
+}
+
+.score-huge {
+  font-size: 1.8rem;
+  font-weight: 800;
+  font-family: var(--font-serif);
+  color: #fbbf24;
+}
+
+.score-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stars-graphic {
+  color: #fbbf24;
+  letter-spacing: 2px;
+  font-size: 0.95rem;
+}
+
+.score-count {
+  font-size: 0.72rem;
+  color: var(--text-faint);
+}
+
+/* Action Toolbar */
+.action-buttons-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.primary-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent-gold), #b88616);
+  color: #0b0f17;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 15px var(--accent-gold-glow);
+}
+
+.primary-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--accent-gold-glow);
+  filter: brightness(1.1);
+}
+
+.secondary-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.secondary-action-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-glow);
+  transform: translateY(-2px);
+}
+
+/* Specifications Grid */
+.specs-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.spec-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+}
+
+.spec-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  font-family: var(--font-display);
+}
+
+/* Deep Lore & Synopsis Block */
+.content-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-gold);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 0.03em;
+}
+
+.synopsis-text {
+  font-family: var(--font-book);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-main);
+  opacity: 0.95;
+}
+
+/* Notable Quote Callout */
+.quote-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(229, 185, 88, 0.08), rgba(0, 0, 0, 0.2));
+  border-left: 4px solid var(--accent-gold);
+  border-radius: 0 12px 12px 0;
+  padding: 1.5rem 1.8rem;
+  font-style: italic;
+  font-family: var(--font-book);
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.quote-author {
+  font-style: normal;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  align-self: flex-end;
+}
+
+.quote-copy-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-faint);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 0.72rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.quote-copy-btn:hover {
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+
+/* Key Themes & Characters Chips */
+.chips-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.theme-chip {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+}
+
+/* Rating Meter Breakdown */
+.ratings-breakdown-box {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.breakdown-bars {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.meter-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.meter-row span:first-child {
+  width: 32px;
+}
+
+.meter-bar-track {
+  flex: 1;
+  height: 8px;
+  background: var(--bg-tertiary);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.meter-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-gold), #f59e0b);
+}
+
+/* Interactive Excerpt Drawer Modal */
+.excerpt-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.excerpt-modal.open {
+  display: flex;
+}
+
+.excerpt-sheet {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 680px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(0.96) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.excerpt-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.excerpt-content {
+  padding: 2rem 2.2rem;
+  overflow-y: auto;
+  font-family: var(--font-book);
+  font-size: 1.08rem;
+  line-height: 1.85;
+  color: var(--text-main);
+}
+
+.excerpt-content p {
+  margin-bottom: 1.2rem;
+  text-indent: 1.5rem;
+}
+
+.close-modal-btn {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.close-modal-btn:hover {
+  color: var(--text-main);
+  border-color: var(--border-medium);
+}
+
+/* Toast Notification for User Feedback */
+.toast-notice {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--bg-glass-heavy);
+  border: 1px solid var(--accent-gold);
+  box-shadow: var(--shadow-md), 0 0 15px var(--accent-gold-glow);
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  color: var(--text-main);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+
+.toast-notice.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+  .book-hero-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .hero-tags-row, .action-buttons-row, .rating-summary-row {
+    justify-content: center;
+  }
+  .ratings-breakdown-box {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Index | Left Frame</title>
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/list.css">
+</head>
+<body class="list-body">
+
+  <!-- Frame Header with Search & Filters -->
+  <header class="list-header">
+    <div class="list-top-row">
+      <div class="list-heading">
+        <span>📚</span>
+        <span>INDEX CODEX</span>
+      </div>
+      <button class="random-pick-btn" id="randomBookBtn" title="Discover a random book">
+        <span>🎲</span>
+        <span>Surprise Tome</span>
+      </button>
+    </div>
+
+    <!-- Search Input -->
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input 
+        type="text" 
+        id="bookSearchInput" 
+        class="search-input" 
+        placeholder="Filter by title, author, genre..." 
+        autocomplete="off"
+      />
+    </div>
+
+    <!-- Genre Pills -->
+    <nav class="genre-scroll" aria-label="Genre Filter">
+      <button class="genre-pill active" data-genre="all">All Volumes</button>
+      <button class="genre-pill" data-genre="sci-fi">Sci-Fi</button>
+      <button class="genre-pill" data-genre="classics">Classics</button>
+      <button class="genre-pill" data-genre="fantasy">Fantasy</button>
+      <button class="genre-pill" data-genre="cyberpunk">Cyberpunk</button>
+      <button class="genre-pill" data-genre="science">Science</button>
+    </nav>
+  </header>
+
+  <!-- Meta Info Bar -->
+  <div class="list-meta-bar">
+    <span id="volumeCount">8 Volumes</span>
+    <span>Click to inspect details &rarr;</span>
+  </div>
+
+  <!-- Scrollable List of Books (Using HTML Frame target="book_details_frame") -->
+  <main class="books-container" id="booksContainer">
+
+    <!-- 1. Dune -->
+    <a href="books/dune.html" target="book_details_frame" class="book-card-link">
+      <article class="book-card active" data-title="Dune" data-author="Frank Herbert" data-genre="sci-fi">
+        <div class="book-thumb-wrapper thumb-dune">
+          <span class="book-thumb-icon">🪐</span>
+        </div>
+        <div class="book-info-col">
+          <div class="book-title-row">
+            <h2 class="book-item-title">Dune</h2>
+            <span class="genre-tag">Sci-Fi</span>
+          </div>
+          <div class="book-item-author">Frank Herbert</div>
+          <div class="book-meta-footer">
+            <span class="rating-badge">★ 4.9</span>
+            <span class="reading-time">⏱️ ~18 hrs</span>
+          </div>
+        </div>
+      </article>
+    </a>
+
+    <!-- 2. 1984 -->
+    <a href="books/1984.html" target="book_details_frame" class="book-card-link">
+      <article class="book-card" data-title="1984" data-author="George Orwell" data-genre="classics sci-fi">
+        <div class="book-thumb-wrapper thumb-1984">
+          <span class="book-thumb-icon">👁️</span>
+        </div>
+        <div class="book-info-col">
+          <div class="book-title-row">
+            <h2 class="book-item-title">1984</h2>
+            <span class="genre-tag">Dystopia</span>
+          </div>
+          <div class="book-item-author">George Orwell</div>
+          <div class="book-meta-footer">
+            <span class="rating-badge">★ 4.8</span>
+            <span class="reading-time">⏱️ ~9 hrs</span>
+          </div>
+        </div>
+      </article>
+    </a>
+
+    <!-- 3. The Great Gatsby -->
+    <a href="books/gatsby.html" target="book_details_frame" class="book-card-link">
+      <article class="book-card" data-title="The Great Gatsby" data-author="F. Scott Fitzgerald" data-genre="classics">
+        <div class="book-thumb-wrapper thumb-gatsby">
+          <span class="book-thumb-icon">🍸</span>
+        </div>
+        <div class="book-info-col">
+          <div class="book-title-row">
+            <h2 class="book-item-title">The Great Gatsby</h2>
+            <span class="genre-tag">Classic</span>
+          </div>
+          <div class="book-item-author">F. Scott Fitzgerald</div>
+          <div class="book-meta-footer">
+            <span class="rating-badge">★ 4.6</span>
+            <span class="reading-time">⏱️ ~4.5 hrs</span>
+          </div>
+        </div>
+      </article>
+    </a>
+
+    <!-- 4. Neuromancer -->
+    <a href="books/neuromancer.html" target="book_details_frame" class="book-card-link">
+      <article class="book-card" data-title="Neuromancer" data-author="William Gibson" data-genre="cyberpunk sci-fi">
+        <div class="book-thumb-wrapper thumb-neuromancer">
+          <span class="book-thumb-icon">💾</span>
+        </div>
+        <div class="book-info-col">
+          <div class="book-title-row">
+            <h2 class="book-item-title">Neuromancer</h2>
+            <span class="genre-tag">Cyberpunk</span>
+          </div>
+          <div class="book-item-author">William Gibson</div>
+          <div class="book-meta-footer">
+            <span class="rating-badge">★ 4.7</span>
+            <span class="reading-time">⏱️ ~8.5 hrs</span>
+          </div>
+        </div>
+      </article>
+    </a>
+
+    <!-- 5. The Hobbit -->
+    <a href="books/hobbit.html" target="book_details_frame" class="book-card-link">
+      <article class="book-card" data-title="The Hobbit" data-author="J.R.R. Tolkien" data-genre="fantasy">
+        <div class="book-thumb-wrapper thumb-hobbit">
+          <span class="book-thumb-icon">🗡️</span>
+        </div>
+        <div class="book-info-col">
+          <div class="book-title-row">
+            <h2 class="book-item-title">The Hobbit</h2>
+            <span class="genre-tag">Fantasy</span>
+          </div>
+          <div class="book-item-author">J.R.R. Tolkien</div>
+          <div class="book-meta-footer">
+            <span class="rating-badge">★ 4.9</span>
+            <span class="reading-time">⏱️ ~10 hrs</span>
+          </div>
+        </div>
+      </article>
+    </a>
+
+    <!-- 6. Pride and Prejudice -->
+    <a href="books/pride.html" target="book_details_frame" class="book-card-link">
+      <article class="book-card" data-title="Pride and Prejudice" data-author="Jane Austen" data-genre="classics">
+        <div class="book-thumb-wrapper thumb-pride">
+          <span class="book-thumb-icon">🪶</span>
+        </div>
+        <div class="book-info-col">
+          <div class="book-title-row">
+            <h2 class="book-item-title">Pride &amp; Prejudice</h2>
+            <span class="genre-tag">Romance</span>
+          </div>
+          <div class="book-item-author">Jane Austen</div>
+          <div class="book-meta-footer">
+            <span class="rating-badge">★ 4.7</span>
+            <span class="reading-time">⏱️ ~11 hrs</span>
+          </div>
+        </div>
+      </article>
+    </a>
+
+    <!-- 7. To Kill a Mockingbird -->
+    <a href="books/mockingbird.html" target="book_details_frame" class="book-card-link">
+      <article class="book-card" data-title="To Kill a Mockingbird" data-author="Harper Lee" data-genre="classics">
+        <div class="book-thumb-wrapper thumb-mockingbird">
+          <span class="book-thumb-icon">⚖️</span>
+        </div>
+        <div class="book-info-col">
+          <div class="book-title-row">
+            <h2 class="book-item-title">To Kill a Mockingbird</h2>
+            <span class="genre-tag">Classic</span>
+          </div>
+          <div class="book-item-author">Harper Lee</div>
+          <div class="book-meta-footer">
+            <span class="rating-badge">★ 4.8</span>
+            <span class="reading-time">⏱️ ~9 hrs</span>
+          </div>
+        </div>
+      </article>
+    </a>
+
+    <!-- 8. The Quantum Universe -->
+    <a href="books/quantum.html" target="book_details_frame" class="book-card-link">
+      <article class="book-card" data-title="The Quantum Universe" data-author="Brian Cox &amp; Jeff Forshaw" data-genre="science">
+        <div class="book-thumb-wrapper thumb-quantum">
+          <span class="book-thumb-icon">🌌</span>
+        </div>
+        <div class="book-info-col">
+          <div class="book-title-row">
+            <h2 class="book-item-title">The Quantum Universe</h2>
+            <span class="genre-tag">Science</span>
+          </div>
+          <div class="book-item-author">Brian Cox &amp; J. Forshaw</div>
+          <div class="book-meta-footer">
+            <span class="rating-badge">★ 4.8</span>
+            <span class="reading-time">⏱️ ~7.5 hrs</span>
+          </div>
+        </div>
+      </article>
+    </a>
+
+    <!-- Empty Search State -->
+    <div class="no-results" id="noResultsMessage">
+      <div style="font-size: 2rem; margin-bottom: 8px;">🔍</div>
+      <p style="font-weight: 600; color: var(--text-main);">No matching tomes</p>
+      <p style="font-size: 0.78rem;">Try clearing your search or switching genre filters.</p>
+    </div>
+
+  </main>
+
+  <script src="js/list.js"></script>
+</body>
+</html>
